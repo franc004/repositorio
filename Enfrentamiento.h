@@ -21,7 +21,9 @@ public:
     void InflingirDano(int ,vector<CUnidad*> &  ,int ,vector<CUnidad*> &,Menu& );
 
 };
-
+float calcularDaño(CUnidad* agredido, float danoDelAtacante, float multiplicador);
+float calcularMultiplicador(const string& tamanio, const string& tipoAtaque);
 void enfrentamiento(int ,vector<CUnidad*> &  ,int ,vector<CUnidad*> &,Menu&  );
+void ataqueEnGrupo(vector<CUnidad*>& BaseAtacante, vector<CUnidad*>& BaseAtacada, Menu& jugador, int& n);
 
 #endif //PROYECTO_ENFRENTAMIENTO_H

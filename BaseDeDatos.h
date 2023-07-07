@@ -10,14 +10,14 @@ using namespace std;
 class CUnidad {
 public:
     virtual ~CUnidad();
-    [[nodiscard]] virtual std::string getNombre() const = 0;
-    [[nodiscard]] virtual float getVida() const = 0;
+     virtual std::string getNombre() const = 0;
+     virtual float getVida() const = 0;
     virtual void setVida(float ) = 0;
-    [[nodiscard]] virtual float getBlindaje() const = 0;
-    [[nodiscard]] virtual float getDanoTerrestre() const = 0;
-    [[nodiscard]] virtual float getDanoAereo() const = 0;
-    [[nodiscard]] virtual bool getautodestruccion() const = 0;
-    [[nodiscard]] virtual void setautodestruccion(bool) = 0;
+     virtual float getBlindaje() const = 0;
+     virtual float getDanoTerrestre() const = 0;
+     virtual float getDanoAereo() const = 0;
+     virtual bool getautodestruccion() const = 0;
+     virtual void setautodestruccion(bool) = 0;
     [[nodiscard]] virtual std::string getTamanio() const = 0;
     [[nodiscard]] virtual bool getprimerAtaque() const =0;
     [[nodiscard]] virtual void setprimerAtaque(bool)  =0;

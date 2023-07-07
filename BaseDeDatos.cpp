@@ -223,10 +223,10 @@ std::vector< CUnidad*> BaseZerg ={
         new CZerg("Devourer", 250, 2, 0, "Normal", 25, "Explosivo", "Grande", "Aereo", false,false),
         new CZerg("Drone", 40, 0, 5, "Normal", 0, "Normal", "Pequeno", "Terrestre", false,false),
         new CZerg("Hydralisk", 80, 0, 10, "Explosivo", 10, "Explosivo", "Mediano", "Aereo", false,false),
-        new CZerg("Infested", 60, 0, 500, "Explosivo", 0, "Normal", "Pequeno", "Terrestre", true,false),
+        new CZerg("Infested", 60, 0, 500, "Explosivo", 0, "Normal", "Pequeno", "Terrestre", false,false),
         new CZerg("Lurker", 125, 1, 20, "Normal", 0, "Normal", "Mediano", "Terrestre", false,false),
         new CZerg("Mutalisk", 120, 0, 9, "Normal", 9, "Normal", "Pequeno", "Aereo", false,false),
-        new CZerg("Scourge", 25, 0, 0, "Normal", 110, "Normal", "Pequeno", "Aereo", true,false),
+        new CZerg("Scourge", 25, 0, 0, "Normal", 110, "Normal", "Pequeno", "Aereo", false,false),
         new CZerg("Ultralisk", 400, 3, 20, "Normal", 0, "Normal", "Grande", "Terrestre", false,false),
         new CZerg("Zergling", 35, 0, 5, "Normal", 0, "Normal", "Pequeno", "Terrestre", false,false)
 };

@@ -126,6 +126,16 @@ public:
                 enfrentamiento( guerreroAtacante, guerreros2 , guerreroAtacado, guerreros1 ,jugador2);
             }
         }
+        if (formaDeAtacar==2){
+            int n=1;
+            if(jugador1.getJugando()==1){
+                ataqueEnGrupo( guerreros1 , guerreros2,jugador1,n);
+            }
+            else{
+                ataqueEnGrupo( guerreros2 , guerreros1,jugador1,n);
+                }
+
+        }
     }
 
     void setEstadoActual(Estado _estadoActual) {
