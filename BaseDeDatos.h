@@ -1,6 +1,7 @@
 #ifndef PROYECTO_BASEDEDATOS_H
 #define PROYECTO_BASEDEDATOS_H
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <iomanip>
@@ -10,17 +11,17 @@ using namespace std;
 class CUnidad {
 public:
     virtual ~CUnidad();
-     virtual std::string getNombre() const = 0;
-     virtual float getVida() const = 0;
+     [[nodiscard]] virtual std::string getNombre() const = 0;
+     [[nodiscard]] virtual float getVida() const = 0;
     virtual void setVida(float ) = 0;
-     virtual float getBlindaje() const = 0;
-     virtual float getDanoTerrestre() const = 0;
-     virtual float getDanoAereo() const = 0;
-     virtual bool getautodestruccion() const = 0;
+     [[nodiscard]] virtual float getBlindaje() const = 0;
+     [[nodiscard]] virtual float getDanoTerrestre() const = 0;
+     [[nodiscard]] virtual float getDanoAereo() const = 0;
+     [[nodiscard]] virtual bool getautodestruccion() const = 0;
      virtual void setautodestruccion(bool) = 0;
     [[nodiscard]] virtual std::string getTamanio() const = 0;
     [[nodiscard]] virtual bool getprimerAtaque() const =0;
-    [[nodiscard]] virtual void setprimerAtaque(bool)  =0;
+     virtual void setprimerAtaque(bool)  =0;
     [[nodiscard]] virtual std::string getTipo() const = 0;
     [[nodiscard]] virtual std::string gettipoDanoTerrestre() const = 0;
     [[nodiscard]] virtual std::string gettipoDanoAereo() const = 0;
@@ -47,14 +48,14 @@ public:
     CZerg(std::string , float , float , float , std::string ,
           float , std::string , std::string , std::string ,bool,bool );
 
-    [[nodiscard]] void setautodestruccion(bool)  override;
+     void setautodestruccion(bool)  override;
     [[nodiscard]] std::string getNombre() const override;
     [[nodiscard]] std::string gettipoDanoTerrestre() const override;
     [[nodiscard]] std::string gettipoDanoAereo() const override;
     [[nodiscard]] float getVida() const override;
     [[nodiscard]] bool getautodestruccion() const override;
     [[nodiscard]] bool getprimerAtaque() const override;
-    [[nodiscard]] void setprimerAtaque(bool primero)  override;
+     void setprimerAtaque(bool primero)  override;
     void setEscudo(float escudo) override;
     [[nodiscard]] float getEscudo() const override ;
     void setVida(float ) override;
@@ -86,11 +87,11 @@ public:
             float , std::string , std::string , std::string ,float );
 
     [[nodiscard]] std::string getNombre() const override; //
-    [[nodiscard]] void setautodestruccion(bool)  override;
+    void setautodestruccion(bool)  override;
     [[nodiscard]] float getEscudo() const override ;
     [[nodiscard]] bool getautodestruccion() const override;
     [[nodiscard]] bool getprimerAtaque() const override;
-    [[nodiscard]] void setprimerAtaque(bool)  override;
+     void setprimerAtaque(bool)  override;
     [[nodiscard]] float getVida() const override ;          //
     [[nodiscard]] std::string gettipoDanoTerrestre() const override;
     [[nodiscard]] std::string gettipoDanoAereo() const override;
@@ -126,7 +127,7 @@ public:
             float , std::string , std::string , std::string );
 
     [[nodiscard]] std::string getNombre() const override ;
-    [[nodiscard]] void setautodestruccion(bool)  override;
+     void setautodestruccion(bool)  override;
     void setEscudo(float escudo) override;
     [[nodiscard]] float getEscudo() const override ;
     [[nodiscard]] float getVida() const override ;
@@ -134,13 +135,13 @@ public:
     [[nodiscard]] std::string gettipoDanoAereo() const override;
     [[nodiscard]] bool getautodestruccion() const override;
     [[nodiscard]] bool getprimerAtaque() const override;
-    [[nodiscard]] void setprimerAtaque(bool)  override;
+     void setprimerAtaque(bool)  override;
     void setVida(float nuevaVida) override ;
     [[nodiscard]] float getBlindaje() const override;
     [[nodiscard]] float getDanoTerrestre() const override;
-    [[nodiscard]] float getDanoAereo() const override;
-    [[nodiscard]] std::string getTamanio() const override;
-    [[nodiscard]] std::string getTipo() const override;
+    [[nodiscard]]float getDanoAereo() const override;
+    [[nodiscard]]std::string getTamanio() const override;
+    [[nodiscard]]std::string getTipo() const override;
 };
 bool existeGuerreroEnBaseJugador(const vector<CUnidad*>& BaseJugador, CUnidad* guerrero);
 void imprimirUnidades(const std::vector<CUnidad*>& unidades, const string&, int raza) ;
@@ -148,6 +149,17 @@ extern std::vector<CUnidad*> BaseProtos;
 extern std::vector<CUnidad*> BaseTerran;
 extern std::vector< CUnidad*>  BaseZerg;
 void anadirguerreros(std::vector<CUnidad*>& , int , std::vector<CUnidad*>& , int);
+void guardarArchivo(string& texto, ofstream& archivo);
 
+
+class OutputStream {
+public:
+    OutputStream(const std::string& filename);
+    OutputStream& operator<<(const std::string& str);
+    ~OutputStream();
+
+private:
+    std::ofstream outputFile;
+};
 
 #endif //PROYECTO_BASEDEDATOS_H

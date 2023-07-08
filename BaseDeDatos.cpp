@@ -219,16 +219,16 @@ std::vector<CUnidad*> BaseTerran = {
         new CTerran("Wraith", 120, 0, 8, "Normal", 20, "Explosivo", "Grande", "Aereo")
 };
 std::vector< CUnidad*> BaseZerg ={
-        new CZerg("Broodling", 30, 0, 4, "Normal", 0, "Normal", "Pequeno", "Terrestre", false,false),
-        new CZerg("Devourer", 250, 2, 0, "Normal", 25, "Explosivo", "Grande", "Aereo", false,false),
-        new CZerg("Drone", 40, 0, 5, "Normal", 0, "Normal", "Pequeno", "Terrestre", false,false),
-        new CZerg("Hydralisk", 80, 0, 10, "Explosivo", 10, "Explosivo", "Mediano", "Aereo", false,false),
+        new CZerg("Broodling", 30, 0, 4, "Normal", 0, "Normal", "Pequeno", "Terrestre", true,false),
+        new CZerg("Devourer", 250, 2, 0, "Normal", 25, "Explosivo", "Grande", "Aereo", true,false),
+        new CZerg("Drone", 40, 0, 5, "Normal", 0, "Normal", "Pequeno", "Terrestre", true,false),
+        new CZerg("Hydralisk", 80, 0, 10, "Explosivo", 10, "Explosivo", "Mediano", "Aereo", true,false),
         new CZerg("Infested", 60, 0, 500, "Explosivo", 0, "Normal", "Pequeno", "Terrestre", false,false),
-        new CZerg("Lurker", 125, 1, 20, "Normal", 0, "Normal", "Mediano", "Terrestre", false,false),
-        new CZerg("Mutalisk", 120, 0, 9, "Normal", 9, "Normal", "Pequeno", "Aereo", false,false),
+        new CZerg("Lurker", 125, 1, 20, "Normal", 0, "Normal", "Mediano", "Terrestre", true,false),
+        new CZerg("Mutalisk", 120, 0, 9, "Normal", 9, "Normal", "Pequeno", "Aereo", true,false),
         new CZerg("Scourge", 25, 0, 0, "Normal", 110, "Normal", "Pequeno", "Aereo", false,false),
-        new CZerg("Ultralisk", 400, 3, 20, "Normal", 0, "Normal", "Grande", "Terrestre", false,false),
-        new CZerg("Zergling", 35, 0, 5, "Normal", 0, "Normal", "Pequeno", "Terrestre", false,false)
+        new CZerg("Ultralisk", 400, 3, 20, "Normal", 0, "Normal", "Grande", "Terrestre", true,false),
+        new CZerg("Zergling", 35, 0, 5, "Normal", 0, "Normal", "Pequeno", "Terrestre", true,false)
 };
 void imprimirUnidades(const std::vector<CUnidad*>& unidades, const string& modoDeImpresion,int raza) {//guerreo
     int NumeroDeOrden=1;
@@ -250,45 +250,69 @@ void imprimirUnidades(const std::vector<CUnidad*>& unidades, const string& modoD
 
             if (zerg != nullptr) {
                 if(modoDeImpresion=="Guerreros"){
-                    cout<<"       "<<NumeroDeOrden<<"       ";
+                       cout <<setw(15)<<left<<NumeroDeOrden<< setw(15) << zerg ->getNombre()
+                            << setw(10) << zerg ->getVida()
+                            << setw(10) << zerg ->getBlindaje()
+                            << setw(18) << zerg->getDanoTerrestre()
+                            << setw(15) << zerg->getDanoAereo()
+                            << setw(10) << zerg->getTamanio()
+                            << setw(10) << zerg->getTipo() << endl;
+                }else {
+                    cout << left << setw(15) << zerg->getNombre()
+                         << setw(10) << zerg->getVida()
+                         << setw(10) << zerg->getBlindaje()
+                         << setw(18) << zerg->getDanoTerrestre()
+                         << setw(15) << zerg->getDanoAereo()
+                         << setw(10) << zerg->getTamanio()
+                         << setw(10) << zerg->getTipo() << endl;
+                    // Imprimir los demás atributos de CZerg
                 }
-                cout << left << setw(15) << zerg ->getNombre()
-                     << setw(10) << zerg ->getVida()
-                     << setw(10) << zerg ->getBlindaje()
-                     << setw(18) << zerg->getDanoTerrestre()
-                     << setw(15) << zerg->getDanoAereo()
-                     << setw(10) << zerg->getTamanio()
-                     << setw(10) << zerg->getTipo() << endl;
-                // Imprimir los demás atributos de CZerg
             } else {
                 auto* protos = dynamic_cast<CProtos*>(unidad);
                 if (protos != nullptr) {
                     if(modoDeImpresion=="Guerreros"){
-                        cout<<"       "<<NumeroDeOrden<<"       ";
+                        cout <<setw(15)<<left<<NumeroDeOrden<< setw(15) << protos ->getNombre()
+                             << setw(10) << protos ->getVida()
+                             << setw(10) << protos ->getEscudo()
+                             << setw(10) << protos ->getBlindaje()
+                             << setw(18) << protos->getDanoTerrestre()
+                             << setw(15) << protos->getDanoAereo()
+                             << setw(10) << protos->getTamanio()
+                             << setw(10) << protos->getTipo() << endl;
                     }
-                    cout << left << setw(15) << protos ->getNombre()
-                         << setw(10) << protos ->getVida()
-                         << setw(10) << protos ->getEscudo()
-                         << setw(10) << protos ->getBlindaje()
-                         << setw(18) << protos->getDanoTerrestre()
-                         << setw(15) << protos->getDanoAereo()
-                         << setw(10) << protos->getTamanio()
-                         << setw(10) << protos->getTipo() << endl;
+                    else{
+                        cout << left << setw(15) << protos ->getNombre()
+                             << setw(10) << protos ->getVida()
+                             << setw(10) << protos ->getEscudo()
+                             << setw(10) << protos ->getBlindaje()
+                             << setw(18) << protos->getDanoTerrestre()
+                             << setw(15) << protos->getDanoAereo()
+                             << setw(10) << protos->getTamanio()
+                             << setw(10) << protos->getTipo() << endl;
+                    }
+
                     // Imprimir los demás atributos de CProtos
                 } else {
                     auto* terran = dynamic_cast<CTerran*>(unidad);
                     if (terran != nullptr) {
-                        if(modoDeImpresion=="Guerreros"){
-                            cout<<"       "<<NumeroDeOrden<<"       ";
+                        if (modoDeImpresion == "Guerreros") {
+                            cout << setw(15) << left << NumeroDeOrden << setw(15) << zerg->getNombre()
+                                 << setw(10) << zerg->getVida()
+                                 << setw(10) << zerg->getBlindaje()
+                                 << setw(18) << zerg->getDanoTerrestre()
+                                 << setw(15) << zerg->getDanoAereo()
+                                 << setw(10) << zerg->getTamanio()
+                                 << setw(10) << zerg->getTipo() << endl;
+                        } else {
+                            cout << left << setw(15) << terran->getNombre()
+                                 << setw(10) << terran->getVida()
+                                 << setw(10) << terran->getBlindaje()
+                                 << setw(18) << terran->getDanoTerrestre()
+                                 << setw(15) << terran->getDanoAereo()
+                                 << setw(10) << terran->getTamanio()
+                                 << setw(10) << terran->getTipo() << endl;
+                            // Imprimir los demás atributos de CTerran
                         }
-                        cout << left << setw(15) << terran ->getNombre()
-                             << setw(10) << terran ->getVida()
-                             << setw(10) << terran ->getBlindaje()
-                             << setw(18) << terran->getDanoTerrestre()
-                             << setw(15) << terran->getDanoAereo()
-                             << setw(10) << terran->getTamanio()
-                             << setw(10) << terran->getTipo() << endl;
-                        // Imprimir los demás atributos de CTerran
                     }
                 }
             }
@@ -311,11 +335,11 @@ void anadirguerreros(vector<CUnidad*>& BaseDeDatos, int cantidadDeGuerreros, vec
         });
 
         if (iterador != BaseDeDatos.end()) {
-            if (modoJuego == 2 || (modoJuego == 1 && !existeGuerreroEnBaseJugador(BaseJugador, *iterador))) {
+            if ( ((modoJuego == 1 || modoJuego == 2) && !existeGuerreroEnBaseJugador(BaseJugador, *iterador))) {
                 BaseJugador.push_back(*iterador);
                 i++;
             } else {
-                cout << "Ya se ha seleccionado ese héroe. Ingrese nuevamente." << endl;
+                cout << "Ya se ha seleccionado ese heroe. Ingrese nuevamente." << endl;
             }
         } else {
             cout << "No se encontró el héroe. Ingrese nuevamente." << endl;
@@ -331,9 +355,35 @@ bool existeGuerreroEnBaseJugador(const vector<CUnidad*>& BaseJugador, CUnidad* g
     }
     return false;
 }
+void guardarArchivo(string& texto, ofstream& archivo) {
+
+    archivo.open( "Partida.txt",  ios::app);
+    cout<<"Estoy afuera";
+    if(archivo.fail()){
+        cout<<"No se pudo abrir el archivo";
+        exit( 1);
+    }
 
 
+    archivo<<texto<<endl;
+    archivo.close();
 
+}
 
 CUnidad::~CUnidad() {
+}
+
+OutputStream::OutputStream(const std::string& filename) {
+    outputFile.open(filename);
+}
+
+OutputStream& OutputStream::operator<<(const std::string& str) {
+    outputFile << str;
+    return *this;
+}
+
+OutputStream::~OutputStream() {
+    if (outputFile.is_open()) {
+        outputFile.close();
+    }
 }
